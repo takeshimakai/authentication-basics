@@ -4,4 +4,19 @@ html(lang='en')
     meta(charset='UTF-8')
     title Authentication Basics
   body
-    h1 Hello World!
+    h1 Authentication Basics
+
+    if currentUser
+      h2 Welcome back #{currentUser.username}
+      a(href="/log-out") Log Out 
+    
+    else  
+      h2 Please log in
+      form(action="/log-in" method='POST')
+        label(for="username") Username 
+        input(type="text" name='username' placeholder='username')
+        label(for="password") Password 
+        input(type="password" name='password')
+        button Log In
+
+    block content
