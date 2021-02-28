@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
@@ -7,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const mongoDb = "mongodb+srv://***REMOVED***:***REMOVED***@cluster0.bx1ul.mongodb.net/authentication-basics?retryWrites=true&w=majority";
+const mongoDb = `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.bx1ul.mongodb.net/authentication-basics?retryWrites=true&w=majority`;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
